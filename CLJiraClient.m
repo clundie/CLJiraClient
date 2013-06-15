@@ -65,10 +65,10 @@ const NSInteger kCLJiraClientInvalidServerResponseError = 1;
 		[params setObject:maxResults forKey:@"maxResults"];
 	}
 	if ([fields count] > 0) {
-		[params setObject:[fields componentsJoinedByString:@","] forKey:@"fields"];
+    [params setObject:fields forKey:@"fields"];
 	}
 	if ([expand count] > 0) {
-		[params setObject:[expand componentsJoinedByString:@","] forKey:@"expand"];
+		[params setObject:expand forKey:@"expand"];
 	}
 	NSData *postBody = [NSJSONSerialization dataWithJSONObject:params options:0 error:NULL];
 	NSURL *URL = [[NSURL alloc] initWithString:@"rest/api/2/search" relativeToURL:self.baseURL];
