@@ -76,8 +76,10 @@ const NSInteger kCLJiraClientInvalidServerResponseError = 1;
 	[request setHTTPMethod:@"POST"];
 	[request setHTTPBody:postBody];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [self signRequest:request];
+	[request setHTTPShouldHandleCookies:NO];
+	[self signRequest:request];
 	fetcher = [[GTMHTTPFetcher alloc] initWithRequest:request];
+	[fetcher setCookieStorageMethod:kGTMHTTPFetcherCookieStorageMethodNone];
 	BOOL fetchStarted = [fetcher beginFetchWithCompletionHandler:^(NSData *fetchedData, NSError *fetchError) {
 		if (fetchError != nil) {
 			if (completionHandler != nil) {
